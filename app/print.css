@@ -1,0 +1,43 @@
+body {
+  background: white;
+  color: black;
+}
+.site-header,
+.site-footer,
+.hero-links,
+.back-link,
+.chapter-end,
+.skip-link {
+  display: none !important;
+}
+.container {
+  max-width: 100%;
+  padding-inline: 20px;
+}
+.section-space {
+  padding-block: 30px;
+}
+.dark-section {
+  background: white;
+  color: black;
+  --secondary: #555;
+  --line: #ccc;
+}
+.media-surface {
+  max-height: 300px;
+}
+.hero {
+  padding-top: 20px;
+}
+a {
+  text-decoration: underline;
+}
+h1 {
+  font-size: 50px;
+}
+h2 {
+  font-size: 32px;
+}
+section {
+  break-inside: avoid;
+}

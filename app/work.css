@@ -1,0 +1,1433 @@
+/* Personal editorial system. Project identity stays inside its media frame. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.hero-portrait .media-surface {
+  aspect-ratio: 4/5;
+  background: #0b0b0b;
+}
+.hero-portrait .media-surface img {
+  object-position: center;
+}
+.hero-portrait .media-frame {
+  outline: 1px solid var(--line);
+  outline-offset: 7px;
+  margin: 7px;
+}
+.hero-portrait-caption {
+  margin-top: 22px;
+  font-size: 11px;
+}
+.portrait-note {
+  margin-top: 20px;
+}
+.hero {
+  padding-top: 70px;
+  padding-bottom: 65px;
+}
+.hero-portrait {
+  padding-top: 0;
+}
+
+.work-carousel {
+  min-width: 0;
+}
+.work-track {
+  display: flex;
+  position: relative;
+  gap: 28px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 0;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  touch-action: pan-x pan-y pinch-zoom;
+  cursor: grab;
+  user-select: none;
+  padding-block: 8px;
+}
+.work-track::-webkit-scrollbar {
+  display: none;
+}
+.work-track::after {
+  content: "";
+  flex: 0 0 calc(6% - 28px);
+}
+.work-track:focus-visible {
+  outline-offset: 4px;
+}
+.work-track.is-dragging {
+  scroll-snap-type: none;
+  cursor: grabbing;
+  scroll-behavior: auto;
+}
+.work-slide {
+  flex: 0 0 94%;
+  min-width: 0;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+.work-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.45fr);
+  min-height: 510px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.work-panel-copy {
+  padding: 32px 35px 32px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.work-panel-copy .section-label {
+  font-size: 9px;
+  max-width: 265px;
+}
+.work-panel h3 {
+  white-space: pre-line;
+  font-size: clamp(38px, 4vw, 58px);
+  font-weight: 500;
+  line-height: 1.03;
+  letter-spacing: -0.06em;
+  margin-top: 46px;
+}
+.work-role {
+  font-size: 12px;
+  margin-top: 23px;
+  line-height: 1.7;
+}
+.work-summary {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--secondary);
+  max-width: 310px;
+  margin-top: 16px;
+}
+.work-panel .text-link {
+  margin-top: auto;
+  padding-top: 25px;
+  font-size: 12px;
+}
+.carousel-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  border-bottom: 1px solid var(--line);
+  padding-block: 15px;
+}
+.carousel-counter {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--secondary);
+  white-space: nowrap;
+}
+.carousel-counter > span {
+  color: var(--ink);
+}
+.carousel-hint {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--secondary);
+  margin-left: auto;
+  margin-right: 26px;
+}
+.carousel-arrows {
+  display: flex;
+  gap: 10px;
+}
+.carousel-arrows button {
+  border: 1px solid var(--line);
+  background: transparent;
+  width: 47px;
+  height: 47px;
+  display: grid;
+  place-items: center;
+  font-size: 23px;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+.carousel-arrows button:hover:not(:disabled) {
+  background: var(--ink);
+  color: var(--paper);
+}
+.carousel-arrows button:disabled {
+  color: #9b9b95;
+  cursor: default;
+}
+.carousel-index {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+  padding-top: 15px;
+}
+.carousel-index button {
+  text-align: left;
+  background: none;
+  border: 0;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-height: 44px;
+  padding: 10px 0;
+  color: var(--secondary);
+  font-size: 11px;
+}
+.carousel-index button > span {
+  font-family: var(--font-mono);
+  font-size: 9px;
+}
+.carousel-index button[aria-current] {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+/* Tekapto colors occur only under an explicitly scoped project element. */
+.tekapto-scope {
+  --tk-signal: #ff5838;
+  --tk-ink: #121417;
+  --tk-bone: #f4f2ec;
+}
+.tekapto-slide-art {
+  background: var(--tk-ink);
+  color: var(--tk-bone);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 26px;
+  min-width: 0;
+}
+.tekapto-wordmark {
+  width: 180px;
+  height: auto;
+  object-fit: contain;
+}
+.tekapto-slide-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.tekapto-slide-top .mono {
+  font-size: 8px;
+  max-width: 150px;
+  text-align: right;
+  line-height: 1.8;
+}
+.tekapto-board-preview img {
+  width: 100%;
+  height: auto;
+}
+.tekapto-slide-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  font-size: 11px;
+}
+.tekapto-scope .tekapto-signal {
+  display: block;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  background: var(--tk-signal);
+}
+.web-slide-art {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-content: center;
+  gap: 13px;
+  padding: 23px 0 22px 20px;
+  min-width: 0;
+}
+.web-slide-art .video-surface {
+  aspect-ratio: 2.3;
+}
+.web-slide-previews {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.web-slide-previews img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1.8;
+  object-fit: cover;
+  object-position: top;
+}
+.web-slide-previews figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 9px;
+  padding-top: 8px;
+}
+.web-slide-previews figcaption span {
+  color: var(--secondary);
+  font-family: var(--font-mono);
+  font-size: 8px;
+}
+.visual-source-note {
+  font-size: 9px;
+  color: var(--secondary);
+}
+.brand-slide-art,
+.growth-slide-art {
+  background: #ecebe6;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.brand-slide-art .media-frame,
+.growth-slide-art .media-frame {
+  flex: 1;
+  display: flex;
+}
+.brand-slide-art .media-surface,
+.growth-slide-art .media-surface {
+  width: 100%;
+  aspect-ratio: auto;
+  min-height: 300px;
+}
+.brand-slide-art .media-surface {
+  background: #e8e6df;
+}
+.brand-slot-caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  border-top: 1px solid #d2d1c8;
+  margin: 0 25px;
+  padding: 23px 0;
+  font-family: var(--font-mono);
+  font-size: 9px;
+}
+.growth-flow {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin: 0 25px;
+  padding: 23px 0;
+  border-top: 1px solid #d2d1c8;
+  font-size: 12px;
+}
+.growth-flow > span {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+.growth-flow > span > span {
+  color: var(--secondary);
+}
+
+.showcase-video {
+  min-width: 0;
+}
+.video-surface {
+  position: relative;
+  background: #171918;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+.video-surface > img,
+.video-surface video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.video-surface > img {
+  z-index: 1;
+}
+.video-control {
+  position: absolute;
+  z-index: 2;
+  bottom: 17px;
+  left: 17px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-height: 44px;
+  padding: 10px 15px;
+  border: 1px solid #b7b9af;
+  color: white;
+  background: #101110;
+  font-size: 11px;
+}
+.video-control > span:first-child {
+  font-size: 21px;
+}
+.video-control:hover {
+  background: #34362f;
+}
+.video-error {
+  position: absolute;
+  z-index: 3;
+  inset: 20px 20px auto;
+  padding: 15px;
+  background: #fff;
+  color: #111;
+  font-size: 12px;
+}
+
+.tekapto-case-brand {
+  padding: 42px 50px;
+  background: var(--tk-ink);
+  color: var(--tk-bone);
+  min-height: 365px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 65px;
+}
+.tekapto-brand-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+}
+.tekapto-brand-heading .section-label {
+  font-size: 9px;
+}
+.tekapto-brand-message {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 30px;
+}
+.tekapto-brand-message p {
+  white-space: pre-line;
+  font-size: clamp(32px, 4vw, 57px);
+  letter-spacing: -0.045em;
+  line-height: 1.15;
+}
+.tekapto-brand-message .tekapto-signal {
+  width: 47px;
+  height: 47px;
+}
+.company-project-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px 35px;
+}
+.company-project-lead {
+  grid-column: 1/-1;
+}
+.company-project-lead .video-surface {
+  aspect-ratio: 2.1;
+}
+.company-project-info {
+  padding-top: 22px;
+}
+.company-project-info h3 {
+  font-size: 30px;
+  margin-top: 9px;
+}
+.company-project-info .section-label {
+  font-size: 9px;
+}
+.company-project-info > p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--secondary);
+  margin-top: 18px;
+  max-width: 550px;
+}
+.company-project-info .text-link {
+  margin-top: 15px;
+  font-size: 12px;
+}
+.company-project-lead .company-project-info {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 0 70px;
+}
+.company-project-lead .company-project-info > p {
+  margin-top: 0;
+}
+.company-project-lead .company-project-info > .text-link {
+  grid-column: 2;
+}
+.other-company-work {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 65px;
+  margin-top: 65px;
+  border-top: 1px solid var(--line);
+  padding-top: 35px;
+}
+.other-company-work h3 {
+  font-size: 24px;
+  margin-top: 15px;
+}
+.other-company-work p:not(.section-label) {
+  font-size: 14px;
+  margin-top: 15px;
+  color: var(--secondary);
+}
+.other-company-work .text-link {
+  margin-top: 16px;
+  font-size: 12px;
+}
+.identity-story {
+  padding-block: 100px 20px;
+}
+.identity-story h2 {
+  margin-top: 25px;
+  font-size: 47px;
+}
+.identity-story img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+}
+.identity-story figcaption {
+  font-size: 11px;
+  color: var(--secondary);
+  margin-top: 14px;
+}
+.collection-note {
+  font-size: 12px;
+  line-height: 1.8;
+  max-width: 710px;
+  color: var(--secondary);
+  border-left: 1px solid var(--line);
+  padding-left: 20px;
+  margin-bottom: 45px;
+}
+.collection-note a {
+  display: inline-block;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  min-height: 30px;
+  color: var(--ink);
+}
+.web-demo-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 70px 35px;
+}
+.web-demo {
+  min-width: 0;
+}
+.web-demo.demo-0,
+.web-demo.demo-5 {
+  grid-column: 1/-1;
+}
+.demo-visual {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: #e8e8e2;
+}
+.demo-visual img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1.44;
+  object-fit: cover;
+  object-position: top;
+  transition: transform 0.6s;
+}
+.demo-0 .demo-visual img,
+.demo-5 .demo-visual img {
+  aspect-ratio: 1.9;
+}
+.demo-visual:hover img {
+  transform: scale(1.015);
+}
+.demo-corner {
+  display: grid;
+  place-items: center;
+  position: absolute;
+  bottom: 18px;
+  right: 18px;
+  background: var(--paper);
+  color: var(--ink);
+  width: 42px;
+  height: 42px;
+  font-size: 21px;
+}
+.demo-info {
+  padding-top: 23px;
+}
+.demo-info .section-label {
+  font-size: 9px;
+  color: var(--secondary);
+}
+.demo-info h2 {
+  font-size: 31px;
+  margin-top: 12px;
+}
+.demo-info > p {
+  font-size: 14px;
+  margin-top: 17px;
+  color: var(--secondary);
+}
+.demo-0 .demo-info,
+.demo-5 .demo-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+.demo-0 .demo-info > p,
+.demo-5 .demo-info > p {
+  margin-top: 0;
+}
+.demo-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  margin-top: 16px;
+  padding-top: 13px;
+  border-top: 1px solid var(--line);
+}
+.demo-meta > span {
+  font-size: 10px;
+  color: var(--secondary);
+}
+.demo-meta .text-link {
+  font-size: 11px;
+  gap: 18px;
+}
+.web-product-story {
+  display: grid;
+  grid-template-columns: 0.85fr 1.2fr;
+  gap: 8%;
+  align-items: center;
+  margin-top: 95px;
+  padding-top: 60px;
+  border-top: 1px solid var(--line);
+}
+.web-product-story h2 {
+  font-size: 42px;
+  margin-top: 25px;
+}
+.web-product-story p:not(.section-label) {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--secondary);
+  margin-top: 23px;
+}
+.web-product-story .text-link {
+  margin-top: 22px;
+  font-size: 12px;
+}
+.racing-image-pair {
+  display: grid;
+  grid-template-columns: 0.8fr 1.55fr;
+  gap: 32px;
+  align-items: end;
+}
+.racing-image-pair > .media-frame:first-child .media-surface {
+  aspect-ratio: 4/5;
+}
+.racing-image-pair > .media-frame:last-child .media-surface {
+  aspect-ratio: 1.7;
+}
+.racing-image-pair > .media-frame:last-child {
+  padding-bottom: 0;
+}
+.hardware-home {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9%;
+  border-top: 1px solid var(--line);
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+.hardware-home h2 {
+  font-size: clamp(33px, 3.6vw, 50px);
+  margin-top: 25px;
+}
+.hardware-home .body-copy {
+  font-size: 15px;
+}
+.hardware-home dl {
+  margin-block: 25px 12px;
+}
+.hardware-home dl > div {
+  padding-block: 15px;
+  border-top: 1px solid var(--line);
+}
+.hardware-home dt {
+  font-size: 9px;
+  text-transform: uppercase;
+}
+.hardware-home dd {
+  font-size: 12px;
+}
+.hardware-home .text-link {
+  font-size: 12px;
+}
+
+@media (max-width: 1100px) {
+  .work-panel {
+    grid-template-columns: 0.9fr 1.25fr;
+    min-height: 460px;
+  }
+  .work-panel-copy {
+    padding-right: 24px;
+  }
+  .work-panel h3 {
+    font-size: 42px;
+    margin-top: 30px;
+  }
+  .work-summary {
+    font-size: 13px;
+  }
+  .work-role {
+    font-size: 11px;
+  }
+  .tekapto-slide-art {
+    padding: 24px;
+    gap: 22px;
+  }
+  .tekapto-slide-top {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .tekapto-slide-top .mono {
+    max-width: none;
+    text-align: left;
+  }
+  .tekapto-wordmark {
+    width: 160px;
+  }
+  .tekapto-slide-bottom {
+    font-size: 10px;
+  }
+  .web-slide-art {
+    padding-left: 5px;
+  }
+  .video-control {
+    font-size: 10px;
+    padding: 9px 12px;
+  }
+  .brand-slot-caption {
+    font-size: 8px;
+    margin-inline: 15px;
+    gap: 8px;
+  }
+  .growth-flow {
+    font-size: 10px;
+    gap: 8px;
+    margin-inline: 15px;
+  }
+  .growth-flow > span {
+    gap: 12px;
+  }
+  .carousel-index {
+    gap: 14px;
+  }
+  .carousel-index button {
+    font-size: 10px;
+    gap: 9px;
+  }
+  .racing-image-pair {
+    gap: 25px;
+  }
+}
+@media (max-width: 800px) {
+  .work-panel {
+    grid-template-columns: 1fr;
+  }
+  .work-panel-copy {
+    padding: 23px 0 28px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 28px;
+  }
+  .work-panel-copy > .section-label {
+    grid-column: 1/-1;
+    max-width: none;
+  }
+  .work-panel h3 {
+    margin-top: 0;
+    grid-row: 2/4;
+    font-size: 40px;
+  }
+  .work-role {
+    margin-top: 0;
+  }
+  .work-summary {
+    margin-top: 0;
+    font-size: 12px;
+  }
+  .work-panel .text-link {
+    margin-top: 0;
+    padding-top: 3px;
+    grid-column: 1/-1;
+  }
+  .tekapto-slide-art {
+    min-height: 350px;
+  }
+  .tekapto-slide-top {
+    flex-direction: row;
+    align-items: center;
+  }
+  .tekapto-board-preview {
+    max-width: 520px;
+    align-self: center;
+  }
+  .web-slide-art {
+    padding: 0 0 18px;
+  }
+  .brand-slide-art .media-surface,
+  .growth-slide-art .media-surface {
+    aspect-ratio: 1.7;
+  }
+  .web-slide-art .video-surface {
+    aspect-ratio: 2.5;
+  }
+  .carousel-index {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px 20px;
+  }
+  .company-project-info h3 {
+    font-size: 27px;
+  }
+  .demo-info h2 {
+    font-size: 27px;
+  }
+  .web-product-story {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .identity-story h2 {
+    font-size: 38px;
+  }
+}
+@media (max-width: 700px) {
+  .hero {
+    padding-top: 43px;
+    gap: 34px;
+  }
+  .hero-portrait {
+    grid-template-columns: 1fr;
+    gap: 0;
+    max-width: none;
+  }
+  .hero-portrait .media-frame {
+    grid-row: auto;
+    width: auto;
+  }
+  .hero-portrait .media-surface {
+    aspect-ratio: 4/5;
+  }
+  .hero-portrait-caption {
+    flex-direction: row;
+    align-self: auto;
+    margin-top: 17px;
+    font-size: 11px;
+  }
+  .portrait-note {
+    margin-top: 18px;
+    padding-top: 14px;
+    font-size: 9px;
+  }
+  .hero-copy > .section-label {
+    font-size: 9px;
+  }
+  .work-track {
+    gap: 17px;
+  }
+  .work-track::after {
+    flex-basis: calc(6% - 17px);
+  }
+  .work-panel-copy {
+    grid-template-columns: 1fr;
+    padding: 21px 16px 24px 0;
+    gap: 0;
+    min-height: 315px;
+  }
+  .work-panel-copy > .section-label {
+    font-size: 8px;
+    line-height: 1.7;
+  }
+  .work-panel h3 {
+    grid-row: auto;
+    font-size: 43px;
+    margin-top: 23px;
+  }
+  .work-role {
+    font-size: 11px;
+    margin-top: 17px;
+  }
+  .work-summary {
+    font-size: 12px;
+    margin-top: 12px;
+    max-width: 360px;
+  }
+  .work-panel .text-link {
+    margin-top: 17px;
+    font-size: 12px;
+    padding-top: 3px;
+  }
+  .tekapto-slide-art {
+    min-height: 310px;
+    padding: 21px 19px;
+    gap: 24px;
+  }
+  .tekapto-slide-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  .tekapto-slide-top .mono {
+    font-size: 7px;
+  }
+  .tekapto-wordmark {
+    width: 145px;
+  }
+  .tekapto-slide-bottom {
+    font-size: 10px;
+  }
+  .tekapto-scope .tekapto-signal {
+    width: 18px;
+    height: 18px;
+  }
+  .brand-slide-art .media-surface,
+  .growth-slide-art .media-surface {
+    aspect-ratio: 1.15;
+    min-height: 250px;
+  }
+  .brand-slot-caption {
+    font-size: 7px;
+    margin-inline: 16px;
+    padding-block: 18px;
+  }
+  .growth-flow {
+    font-size: 10px;
+    margin-inline: 16px;
+  }
+  .growth-flow > span {
+    gap: 10px;
+  }
+  .web-slide-art {
+    gap: 12px;
+  }
+  .web-slide-art .video-surface {
+    aspect-ratio: 1.65;
+  }
+  .web-slide-previews {
+    gap: 12px;
+  }
+  .web-slide-previews img {
+    aspect-ratio: 1.45;
+  }
+  .web-slide-previews figcaption {
+    font-size: 8px;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .web-slide-previews figcaption span {
+    font-size: 7px;
+  }
+  .visual-source-note {
+    font-size: 8px;
+  }
+  .carousel-hint {
+    display: none;
+  }
+  .carousel-toolbar {
+    padding-block: 10px;
+  }
+  .carousel-counter {
+    font-size: 11px;
+  }
+  .carousel-arrows button {
+    width: 46px;
+    height: 46px;
+  }
+  .carousel-index {
+    gap: 3px 12px;
+  }
+  .carousel-index button {
+    font-size: 10px;
+    gap: 9px;
+    min-height: 44px;
+  }
+  .carousel-index button > span {
+    font-size: 8px;
+  }
+  .video-control {
+    bottom: 12px;
+    left: 12px;
+    font-size: 10px;
+    gap: 8px;
+  }
+  .video-control > span:first-child {
+    font-size: 20px;
+  }
+  .tekapto-case-brand {
+    padding: 28px 23px;
+    min-height: 315px;
+    gap: 50px;
+  }
+  .tekapto-brand-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .tekapto-brand-heading .section-label {
+    font-size: 8px;
+  }
+  .tekapto-brand-message p {
+    font-size: 33px;
+  }
+  .tekapto-brand-message .tekapto-signal {
+    width: 20px;
+    height: 20px;
+  }
+  .company-project-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .company-project-lead {
+    grid-column: auto;
+  }
+  .company-project-lead .video-surface {
+    aspect-ratio: 16/9;
+  }
+  .company-project-lead .company-project-info {
+    display: block;
+  }
+  .company-project-info h3 {
+    font-size: 28px;
+  }
+  .company-project-info > p,
+  .company-project-lead .company-project-info > p {
+    font-size: 13px;
+    margin-top: 15px;
+  }
+  .company-project-info .section-label {
+    font-size: 8px;
+  }
+  .other-company-work {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-top: 42px;
+    padding-top: 28px;
+  }
+  .other-company-work h3 {
+    font-size: 25px;
+  }
+  .other-company-work p:not(.section-label) {
+    font-size: 13px;
+  }
+  .identity-story {
+    padding-top: 65px;
+  }
+  .identity-story h2 {
+    font-size: 36px;
+    margin-top: 22px;
+  }
+  .identity-story figcaption {
+    font-size: 10px;
+  }
+  .collection-note {
+    font-size: 11px;
+    padding-left: 15px;
+    margin-bottom: 30px;
+  }
+  .web-demo-gallery {
+    grid-template-columns: 1fr;
+    gap: 43px;
+  }
+  .web-demo.demo-0,
+  .web-demo.demo-5 {
+    grid-column: auto;
+  }
+  .demo-0 .demo-visual img,
+  .demo-5 .demo-visual img {
+    aspect-ratio: 1.44;
+  }
+  .demo-info,
+  .demo-0 .demo-info,
+  .demo-5 .demo-info {
+    display: block;
+    padding-top: 18px;
+  }
+  .demo-info .section-label {
+    font-size: 8px;
+    line-height: 1.7;
+  }
+  .demo-info h2 {
+    font-size: 28px;
+    margin-top: 9px;
+  }
+  .demo-info > p,
+  .demo-0 .demo-info > p,
+  .demo-5 .demo-info > p {
+    font-size: 13px;
+    margin-top: 12px;
+  }
+  .demo-meta {
+    gap: 12px;
+    margin-top: 14px;
+    padding-top: 8px;
+  }
+  .demo-meta > span {
+    font-size: 8px;
+  }
+  .demo-meta .text-link {
+    font-size: 10px;
+    gap: 13px;
+  }
+  .demo-corner {
+    width: 33px;
+    height: 33px;
+    right: 12px;
+    bottom: 12px;
+    font-size: 18px;
+  }
+  .web-product-story {
+    margin-top: 55px;
+    padding-top: 40px;
+  }
+  .web-product-story h2 {
+    font-size: 36px;
+    margin-top: 20px;
+  }
+  .web-product-story p:not(.section-label) {
+    font-size: 13px;
+  }
+  .racing-image-pair {
+    grid-template-columns: 1fr;
+    gap: 27px;
+  }
+  .racing-image-pair > .media-frame:first-child {
+    max-width: 85%;
+  }
+  .racing-image-pair > .media-frame:last-child .media-surface {
+    aspect-ratio: 1.4;
+  }
+  .hardware-home {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    padding-block: 50px;
+  }
+  .hardware-home h2 {
+    font-size: 37px;
+    margin-top: 22px;
+  }
+  .hardware-home .body-copy {
+    font-size: 14px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .work-track {
+    scroll-behavior: auto;
+  }
+  .demo-visual:hover img {
+    transform: none;
+  }
+}
+
+/* Keep the snap target stable while the inactive content leaves the focus order. */
+.slide-content {
+  height: 100%;
+}
+.work-panel {
+  height: 100%;
+}
+.work-track {
+  overflow-anchor: none;
+}
+
+/* Tekapto carousel only: company identity, not a brand-guideline preview. */
+.work-panel-tekapto {
+  grid-template-columns: minmax(0, 0.45fr) minmax(0, 0.55fr);
+}
+.tekapto-slide-art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  padding: clamp(24px, 4vw, 60px);
+  text-align: center;
+}
+.tekapto-slide-logo {
+  display: block;
+  width: min(100%, 420px);
+  height: auto;
+  object-fit: contain;
+  transition: transform 220ms ease;
+}
+.tekapto-slide-services {
+  font-family: var(--font-mono);
+  font-size: clamp(7px, 0.65vw, 9px);
+  line-height: 1.8;
+  letter-spacing: 0.12em;
+  color: var(--tk-bone);
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .tekapto-slide-art:hover .tekapto-slide-logo {
+    transform: scale(1.01);
+  }
+}
+@media (max-width: 800px) {
+  .work-panel-tekapto {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 700px) {
+  .tekapto-slide-art {
+    min-height: 310px;
+    gap: 22px;
+    padding: 28px;
+  }
+}
+
+/* Static web previews replace the homepage Clevun player. */
+.web-slide-previews {
+  align-items: start;
+  gap: 22px;
+}
+.web-slide-previews figure:last-child {
+  margin-top: 54px;
+}
+.web-slide-previews img {
+  aspect-ratio: 1440 / 1000;
+  object-fit: contain;
+}
+@media (max-width: 700px) {
+  .web-slide-previews {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .web-slide-previews figure:last-child {
+    margin-top: 0;
+  }
+  .web-slide-previews figcaption {
+    flex-direction: row;
+    font-size: 10px;
+  }
+  .web-slide-previews figcaption span {
+    font-size: 8px;
+  }
+}
+
+/* Focal points for the supplied originals; no alteration of the photographs. */
+[data-media="racingPortrait"] .media-surface img {
+  object-position: 50% 35%;
+}
+[data-media="racing"] .media-surface img {
+  object-position: 50% 75%;
+}
+[data-media="about"] .media-surface img {
+  object-position: left center;
+}
+[data-media="hardware"] .media-surface img {
+  object-fit: contain;
+}
+[data-media="logos"].has-image .media-surface {
+  background: #fbf7f3;
+}
+[data-media="logos"] .media-surface img {
+  object-fit: contain;
+}
+
+/* Supplied Hurtado footage: preserve the complete vertical composition. */
+[data-media="hurtado"].has-image .media-surface {
+  background: #121417;
+}
+[data-media="hurtado"] .media-surface img {
+  object-fit: contain;
+}
+.hurtado-campaign-video {
+  margin: 0;
+  width: 100%;
+  max-width: 440px;
+}
+.hurtado-campaign-video video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  background: #121417;
+}
+.hurtado-campaign-video figcaption {
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.growth-video-surface {
+  position: relative;
+  background: #121417;
+}
+.growth-video-surface video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.ai-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 28px;
+  padding: 0;
+  margin: 32px 0 0;
+  list-style: none;
+}
+.ai-tools li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+.ai-tools img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Motorsport story alongside the complete portrait, without side bars. */
+.motorsport-story-with-photo {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+  align-items: center;
+  gap: clamp(32px, 7vw, 100px);
+}
+.motorsport-story-intro {
+  margin-top: 32px;
+}
+[data-media="team"] .media-surface {
+  aspect-ratio: 3 / 4;
+  height: auto;
+  background: #121417;
+}
+[data-media="team"] .media-surface img {
+  object-fit: contain;
+}
+[data-media="team"].has-image:hover img {
+  transform: none;
+}
+@media (max-width: 700px) {
+  .motorsport-story-with-photo {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+}
+
+.university-logo {
+  display: block;
+  width: min(100%, 320px);
+  height: auto;
+  margin-top: 32px;
+}
+
+.content-social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 28px;
+  margin-top: 24px;
+}
+.content-social-links .text-link {
+  font-size: 12px;
+}
+
+.content-social-links .text-link {
+  align-items: center;
+}
+.content-social-links img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.social-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+a:has(> .social-icon) {
+  align-items: center;
+  gap: 10px;
+}
+.hero-links > a:has(> .social-icon),
+.footer-links > a:has(> .social-icon) {
+  display: inline-flex;
+}
+.site-footer .social-icon-github {
+  background: #fff;
+  border-radius: 50%;
+}
+
+.motorsport-page {
+  padding-bottom: 0;
+}
+
+.site-footer {
+  padding-bottom: 32px;
+}
+
+.cv-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  background: #000;
+  color: #fff;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 1;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+.cv-button:hover {
+  transform: scale(1.06);
+  box-shadow: 0 6px 18px rgb(0 0 0 / 18%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .cv-button { transition: none; }
+}
+.cv-button:disabled {
+  cursor: not-allowed;
+}
+.footer-cv {
+  margin-top: 18px;
+}
+.ums-logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 40px 0 0;
+  mix-blend-mode: screen;
+}
+@media (max-width: 700px) {
+  .nav-actions {
+    gap: 10px;
+  }
+  .nav-actions .cv-button {
+    font-size: 10px;
+    padding: 6px 8px;
+    gap: 5px;
+  }
+}
